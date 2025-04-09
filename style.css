@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Resets básicos e variáveis de cor */
+:root {
+    --color-primary: #4CAF50; /* Verde principal */
+    --color-light: #f8f9fa;
+    --color-white: #ffffff;
+    --color-dark: #343a40;
+    --color-grey: #adb5bd;
+    --color-sidebar-bg: #388E3C; /* Verde mais escuro para sidebar */
+    --color-sidebar-text: #ffffff;
+    --color-sidebar-active-bg: #ffffff;
+    --color-sidebar-active-text: #4CAF50;
+    --color-background: #f1f5f9; /* Fundo principal ligeiramente cinza */
+    --card-border-radius: 1rem;
+    --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    background-color: var(--color-background);
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+}
+
+a {
+    color: var(--color-dark);
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+h3 {
+    font-size: 0.87rem;
+    font-weight: 500; /* Ajuste de peso para títulos da sidebar */
+}
+
+.container {
+    display: grid;
+    width: 100%;
+    gap: 1.8rem;
+    grid-template-columns: 16rem auto;
+}
+
+/* --- Sidebar --- */
+aside {
+    height: 100vh;
+    background-color: var(--color-primary);
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 86vh; /* Ajustar altura para deixar espaço */
+    position: relative;
+    top: 1.5rem; /* Espaçamento superior */
+}
+
+aside h3 {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7); /* Cor mais suave para títulos de seção */
+    margin-top: 1rem; /* Espaço acima dos títulos 'Central' e 'Sistema' */
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem; /* Aumentar padding para alinhar com links + ícones */
+}
+
+.sidebar a {
+    display: flex;
+    color: var(--color-sidebar-text);
+    gap: 0.8rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: all 300ms ease;
+    border-radius: 0.8rem 0 0 0.8rem; /* Bordas arredondadas só na esquerda/topo */
+    padding-left: 2rem; /* Aumentar padding esquerdo */
+    margin-right: 1rem; /* Adicionar margem direita para criar espaço antes da borda */
+}
+
+.sidebar a span {
+    font-size: 1.6rem;
+    transition: all 300ms ease;
+}
+
+.sidebar a.active {
+    background-color: var(--color-sidebar-active-bg);
+    color: var(--color-sidebar-active-text);
+    border-top-right-radius: 0.6rem; /* Bordas arredondadas em todos os cantos */
+    border-top-left-radius: 0rem;
+    border-bottom-right-radius: 0.6rem;
+    border-bottom-left-radius: 0rem;
+    padding-left: 1rem; /* Manter o mesmo padding */
+    margin-right: 0.5rem; /* Manter a margem */
+
+}
+
+.sidebar a.active::before {
+    content: "";
+    width: 3px;
+    height: 100%;
+    /* background: var(--color-primary); */ /* Linha lateral ativa - Removido pois o fundo já muda */
+}
+
+.sidebar a.active span {
+    color: var(--color-sidebar-active-text); /* Garantir que o ícone fique verde */
+    /* margin-left: calc(1rem - 6px); */ /* Ajuste de margem quando ativo - Removido */
+}
+
+/* Adicionar regra explícita para o H3 dentro do link ativo */
+.sidebar a.active h3 {
+    color: var(--color-sidebar-active-text);
+}
+
+.sidebar a:hover {
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    border-top-right-radius: 0.6rem; /* Bordas arredondadas em todos os cantos */
+    border-top-left-radius: 0rem;
+    border-bottom-right-radius: 0.6rem;
+    border-bottom-left-radius: 0rem;
+}
+
+/* Adicionar regra para o H3 durante o hover */
+.sidebar a:hover h3 {
+    color: var(--color-primary);
+}
+
+.sidebar a:hover span {
+    margin-left: 0.5rem;
+}
+
+.sidebar .section-separator {
+    margin-top: 2rem; /* Maior espaçamento entre seções */
+}
+
+/* --- Main Content --- */
+main {
+    margin-top: 1.4rem;
+    margin-right: 2rem;
+}
+
+.search-bar {
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem; /* Espaço abaixo da barra de busca */
+}
+
+.search-bar input[type="search"] {
+    background: transparent;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-dark);
+}
+
+.search-bar input[type="search"]::placeholder {
+    color: var(--color-grey);
+}
+
+.content-panel {
+    background-color: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    min-height: 60vh; /* Altura mínima para visualização */
+    /* Estilos adicionais para o conteúdo do painel podem ser adicionados aqui */
+}
+
+/* Ajustes para telas menores (opcional) */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+        grid-template-columns: 8rem auto;
+    }
+
+    aside .sidebar h3 {
+       display: none; /* Esconde textos dos links na sidebar */
+    }
+
+    aside .sidebar a {
+        width: 5.6rem;
+        padding-left: 1.5rem; /* Ajustar padding para telas menores */
+        margin-right: 0.5rem; /* Ajustar margem */
+    }
+
+    aside .sidebar a.active {
+        padding-left: 1.5rem; /* Manter padding consistente */
+        margin-right: 0.5rem; /* Manter margem consistente */
+    }
+
+    main {
+        padding-right: 1rem;
+    }
+} 
