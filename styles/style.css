@@ -62,156 +62,28 @@ h2 {
 
 h3 {
     font-size: 0.87rem;
-    font-weight: 500; /* Ajuste de peso para títulos da sidebar */
-}
-
-.container {
-    display: grid;
-    width: 100%;
-    gap: 1.8rem;
-    grid-template-columns: 16rem auto;
-}
-
-/* --- Sidebar --- */
-aside {
-    height: 100vh;
-    background-color: var(--color-primary);
-}
-
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    height: 86vh; /* Ajustar altura para deixar espaço */
-    position: relative;
-    top: 1.5rem; /* Espaçamento superior */
-}
-
-aside h3 {
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7); /* Cor mais suave para títulos de seção */
-    margin-top: 1rem; /* Espaço acima dos títulos 'Central' e 'Sistema' */
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem; /* Aumentar padding para alinhar com links + ícones */
 }
 
-.sidebar a {
-    display: flex;
-    color: var(--color-sidebar-text);
-    gap: 0.8rem;
-    align-items: center;
-    position: relative;
-    height: 3.7rem;
-    transition: all 300ms ease;
-    border-radius: 0.8rem 0 0 0.8rem; /* Bordas arredondadas só na esquerda/topo */
-    padding-left: 2rem; /* Aumentar padding esquerdo */
-    margin-right: 1rem; /* Adicionar margem direita para criar espaço antes da borda */
-}
-
-.sidebar a span {
-    font-size: 1.6rem;
-    transition: all 300ms ease;
-}
-
-.sidebar a.active {
-    background-color: var(--color-sidebar-active-bg);
-    color: var(--color-sidebar-active-text);
-    border-top-right-radius: 0.6rem; /* Bordas arredondadas em todos os cantos */
-    border-top-left-radius: 0rem;
-    border-bottom-right-radius: 0.6rem;
-    border-bottom-left-radius: 0rem;
-    padding-left: 1rem; /* Manter o mesmo padding */
-    margin-right: 0.5rem; /* Manter a margem */
-
-}
-
-.sidebar a.active::before {
-    content: "";
-    width: 3px;
-    height: 100%;
-    /* background: var(--color-primary); */ /* Linha lateral ativa - Removido pois o fundo já muda */
-}
-
-.sidebar a.active span {
-    color: var(--color-sidebar-active-text); /* Garantir que o ícone fique verde */
-    /* margin-left: calc(1rem - 6px); */ /* Ajuste de margem quando ativo - Removido */
-}
-
-/* Adicionar regra explícita para o H3 dentro do link ativo */
-.sidebar a.active h3 {
-    color: var(--color-sidebar-active-text);
-}
-
-.sidebar a:hover {
-    color: var(--color-primary);
-    background-color: var(--color-light);
-    border-top-right-radius: 0.6rem; /* Bordas arredondadas em todos os cantos */
-    border-top-left-radius: 0rem;
-    border-bottom-right-radius: 0.6rem;
-    border-bottom-left-radius: 0rem;
-}
-
-/* Adicionar regra para o H3 durante o hover */
-.sidebar a:hover h3 {
-    color: var(--color-primary);
-}
-
-.sidebar a:hover span {
-    margin-left: 0.5rem;
-}
-
-.sidebar .section-separator {
-    margin-top: 2rem; /* Maior espaçamento entre seções */
-}
-
-/* --- Main Content --- */
-main {
-    margin-top: 1.4rem;
-    margin-right: 2rem;
-}
-
-.search-bar {
-    background-color: var(--color-white);
-    border-radius: var(--card-border-radius);
-    padding: 0.6rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: var(--box-shadow);
-    margin-bottom: 1.5rem; /* Espaço abaixo da barra de busca */
-}
-
-.search-bar input[type="search"] {
-    background: transparent;
-    width: 100%;
-    margin-left: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--color-dark);
-}
-
-.search-bar input[type="search"]::placeholder {
-    color: var(--color-grey);
-}
-
-.content-panel {
-    background-color: var(--color-white);
-    padding: 1.5rem;
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--box-shadow);
-    min-height: 60vh; /* Altura mínima para visualização */
-}
-
-/* Estilos para a seção de login/cadastro */
+/* Estilos para a página de login */
 .login-section {
     max-width: 400px;
     margin: 0 auto;
     padding: 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
 }
 
-.login-container, .register-container {
+.login-container {
     background-color: var(--color-white);
     padding: 2rem;
     border-radius: var(--card-border-radius);
-    box-shadow: var(--box-shadow);
 }
 
 .login-section h2 {
@@ -221,7 +93,7 @@ main {
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
@@ -244,7 +116,11 @@ main {
     outline: none;
 }
 
-.login-btn, .register-btn {
+.button-group {
+    margin-top: 2rem;
+}
+
+.login-btn {
     width: 100%;
     padding: 0.8rem;
     background-color: var(--color-primary);
@@ -254,24 +130,146 @@ main {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 1rem;
 }
 
-.login-btn:hover, .register-btn:hover {
+.login-btn:hover {
     background-color: var(--color-sidebar-bg);
 }
 
-.register-link, .login-link {
+.register-link {
+    display: block;
     text-align: center;
-    margin-top: 1rem;
-}
-
-.register-link a, .login-link a {
     color: var(--color-primary);
     text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
-.register-link a:hover, .login-link a:hover {
+.register-link:hover {
+    color: var(--color-sidebar-bg);
     text-decoration: underline;
+}
+
+/* Estilos para o dashboard */
+.container {
+    display: grid;
+    width: 100%;
+    gap: 1.8rem;
+    grid-template-columns: 16rem auto;
+}
+
+/* --- Sidebar --- */
+aside {
+    height: 100vh;
+    background-color: var(--color-primary);
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 86vh;
+    position: relative;
+    top: 1.5rem;
+}
+
+aside h3 {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar a {
+    display: flex;
+    color: var(--color-sidebar-text);
+    gap: 0.8rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: all 300ms ease;
+    border-radius: 0.8rem 0 0 0.8rem;
+    padding-left: 2rem;
+    margin-right: 1rem;
+}
+
+.sidebar a span {
+    font-size: 1.6rem;
+    transition: all 300ms ease;
+}
+
+.sidebar a.active {
+    background-color: var(--color-sidebar-active-bg);
+    color: var(--color-sidebar-active-text);
+    border-top-right-radius: 0.6rem;
+    border-top-left-radius: 0rem;
+    border-bottom-right-radius: 0.6rem;
+    border-bottom-left-radius: 0rem;
+    padding-left: 1rem;
+    margin-right: 0.5rem;
+}
+
+.sidebar a.active h3 {
+    color: var(--color-sidebar-active-text);
+}
+
+.sidebar a:hover {
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    border-top-right-radius: 0.6rem;
+    border-top-left-radius: 0rem;
+    border-bottom-right-radius: 0.6rem;
+    border-bottom-left-radius: 0rem;
+}
+
+.sidebar a:hover h3 {
+    color: var(--color-primary);
+}
+
+.sidebar a:hover span {
+    margin-left: 0.5rem;
+}
+
+.sidebar .section-separator {
+    margin-top: 2rem;
+}
+
+/* --- Main Content --- */
+main {
+    margin-top: 1.4rem;
+    margin-right: 2rem;
+}
+
+.search-bar {
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.search-bar input[type="search"] {
+    background: transparent;
+    width: 100%;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-dark);
+}
+
+.search-bar input[type="search"]::placeholder {
+    color: var(--color-grey);
+}
+
+.content-panel {
+    background-color: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    min-height: 60vh;
 }
 
 /* Estilos para o perfil do admin */
@@ -338,7 +336,7 @@ main {
     margin: 0;
 }
 
-/* Ajustes para telas menores (opcional) */
+/* Ajustes para telas menores */
 @media screen and (max-width: 768px) {
     .container {
         width: 100%;
@@ -346,18 +344,18 @@ main {
     }
 
     aside .sidebar h3 {
-       display: none; /* Esconde textos dos links na sidebar */
+       display: none;
     }
 
     aside .sidebar a {
         width: 5.6rem;
-        padding-left: 1.5rem; /* Ajustar padding para telas menores */
-        margin-right: 0.5rem; /* Ajustar margem */
+        padding-left: 1.5rem;
+        margin-right: 0.5rem;
     }
 
     aside .sidebar a.active {
-        padding-left: 1.5rem; /* Manter padding consistente */
-        margin-right: 0.5rem; /* Manter margem consistente */
+        padding-left: 1.5rem;
+        margin-right: 0.5rem;
     }
 
     main {
