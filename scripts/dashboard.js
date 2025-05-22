@@ -1,94 +1,95 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const sidebarLinks = document.querySelectorAll('.sidebar a');
-    const profileLink = document.getElementById('profile-link');
-    const defaultContent = document.querySelector('.default-content');
-
-    // Função para verificar se o usuário está logado
-    function isLoggedIn() {
-        return localStorage.getItem('isLoggedIn') === 'true';
-    }
-
-    // Função para atualizar a seleção dos links da sidebar
-    function updateSidebarSelection(activeLink) {
-        sidebarLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-        activeLink.classList.add('active');
-    }
-
-    // Função para mostrar o perfil do admin
-    function showAdminProfile() {
-        defaultContent.style.display = 'none';
-        
-        // Criar e mostrar o perfil do admin
-        const adminProfile = document.createElement('div');
-        adminProfile.className = 'admin-profile';
-        adminProfile.innerHTML = `
-            <div class="profile-header">
-                <div class="avatar">
-                    <span class="material-icons-sharp">account_circle</span>
-                </div>
-                <h2>Admin</h2>
-                <p>admin@admin.com</p>
-            </div>
-            <div class="profile-info">
-                <div class="info-item">
-                    <span class="material-icons-sharp">email</span>
-                    <p>admin@admin.com</p>
-                </div>
-                <div class="info-item">
-                    <span class="material-icons-sharp">security</span>
-                    <p>Conta Administrativa</p>
-                </div>
-                <div class="info-item">
-                    <span class="material-icons-sharp">logout</span>
-                    <p><a href="#" id="logout-link">Sair</a></p>
-                </div>
-            </div>
-        `;
-        
-        document.querySelector('.content-panel').appendChild(adminProfile);
-
-        // Adicionar evento para o botão de logout
-        const logoutLink = document.getElementById('logout-link');
-        logoutLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            localStorage.removeItem('isLoggedIn');
-            window.location.href = 'index.html';
-        });
-    }
-
-    // Função para voltar ao conteúdo padrão
-    function showDefaultContent() {
-        defaultContent.style.display = 'block';
-        
-        // Remover o perfil do admin se existir
-        const adminProfile = document.querySelector('.admin-profile');
-        if (adminProfile) {
-            adminProfile.remove();
+// Gráfico de Rosca (Resumo Semanal)
+const pieChart1 = new Chart(document.getElementById('pieChart1'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Alimentação', 'Transporte', 'Lazer', 'Contas'],
+        datasets: [{
+            data: [35, 25, 20, 20],
+            backgroundColor: [
+                '#4CAF50', // verde
+                '#FF9800', // laranja
+                '#2196F3', // azul
+                '#E91E63'  // rosa
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '70%',
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    boxWidth: 16,
+                    boxHeight: 16
+                }
+            },
+            title: {
+                display: false
+            }
         }
     }
+});
 
-    // Evento para o link do perfil
-    profileLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        updateSidebarSelection(this);
-        showAdminProfile();
-    });
-
-    // Eventos para os outros links da sidebar
-    sidebarLinks.forEach(link => {
-        if (link !== profileLink) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                updateSidebarSelection(this);
-                showDefaultContent();
-            });
+// Gráfico de Rosca (Metas)
+const metaPercent = 82; // valor aleatório para "Atingido"
+const pieChart2 = new Chart(document.getElementById('pieChart2'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Atingido', 'Restante'],
+        datasets: [{
+            data: [metaPercent, 100 - metaPercent],
+            backgroundColor: [
+                '#00BCD4', // ciano
+                '#FFC107'  // amarelo
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '70%',
+        plugins: {
+            legend: {
+                position: 'right',
+                labels: {
+                    boxWidth: 16,
+                    boxHeight: 16
+                }
+            },
+            title: {
+                display: false
+            },
+            tooltip: {
+                enabled: false
+            }
+        },
+        animation: {
+            onComplete: function() {
+                const chart = pieChart2;
+                const ctx = chart.ctx;
+                ctx.save();
+                ctx.font = 'bold 2.2rem Poppins, Arial';
+                ctx.fillStyle = '#00BCD4';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(metaPercent + '%', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y);
+                ctx.restore();
+            }
         }
-    });
-
-    // Verificar se o usuário está logado
-    if (!isLoggedIn()) {
-        window.location.href = 'index.html';
     }
+});
+
+// Saldo Atual Aleatório
+function gerarSaldoAleatorio(min, max) {
+    const valor = Math.random() * (max - min) + min;
+    return valor;
+}
+
+function formatarReal(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const saldo = gerarSaldoAleatorio(1000, 5000);
+    document.getElementById('saldoAtual').textContent = formatarReal(saldo);
 }); 

@@ -206,7 +206,7 @@ aside h3 {
     border-top-left-radius: 0rem;
     border-bottom-right-radius: 0.6rem;
     border-bottom-left-radius: 0rem;
-    padding-left: 1rem;
+    padding-left: 2rem;
     margin-right: 0.5rem;
 }
 
@@ -216,11 +216,12 @@ aside h3 {
 
 .sidebar a:hover {
     color: var(--color-primary);
-    background-color: var(--color-light);
-    border-top-right-radius: 0.6rem;
+    background-color: rgba(255, 255, 255, 0.501);
+    border-top-right-radius: 0.5rem;
     border-top-left-radius: 0rem;
-    border-bottom-right-radius: 0.6rem;
+    border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0rem;
+    
 }
 
 .sidebar a:hover h3 {
@@ -361,4 +362,82 @@ main {
     main {
         padding-right: 1rem;
     }
+}
+
+.charts-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.chart-card {
+    flex: 1;
+    background: var(--color-white);
+    padding: 1.5rem 1rem 1rem 1rem;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 320px;
+}
+
+.chart-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--color-grey);
+    padding-bottom: 0.5rem;
+}
+
+.chart-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+}
+
+.chart-card canvas {
+    max-width: 220px;
+    max-height: 220px;
+}
+
+@media screen and (max-width: 900px) {
+    .charts-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .chart-card {
+        min-width: unset;
+    }
+}
+
+.saldo-atual-container {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem 2rem;
+    width: fit-content;
+    margin-left: 1rem;
+}
+
+.saldo-label {
+    font-size: 1rem;
+    color: var(--color-grey);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.saldo-valor {
+    font-size: 2rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    letter-spacing: 1px;
 } 
